@@ -18,6 +18,7 @@ import {
 
 // Account Service Types (from existing service)
 export interface IAccountServiceUser {
+  _id?:string,
   userId: string;
   phone: string;
   name: string;
@@ -141,6 +142,7 @@ export class AccountServiceAdapter {
   static toUserRegisteredEvent(user: IAccountServiceUser, deviceInfo?:DeviceInfo, deviceToken?:string): UserRegisteredData {
    const userData:any ={
       info: {
+        _id: user._id,
        userId: user.userId,
        phone: user.phone,
        name: user.name,
