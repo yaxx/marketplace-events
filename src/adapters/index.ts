@@ -140,6 +140,8 @@ export class AccountServiceAdapter {
    * Convert Account service user to UserRegisteredEvent data
    */
   static toUserRegisteredEvent(user: IAccountServiceUser, deviceInfo?:DeviceInfo, deviceToken?:string): UserRegisteredData {
+
+    console.log('convertible',user )
    const userData:any ={
       info: {
         _id: user._id,
@@ -163,6 +165,8 @@ export class AccountServiceAdapter {
       deviceInfo: deviceInfo ?? {},
       deviceToken: deviceToken ?? ''
    }
+
+   
 
     return userData;
       
