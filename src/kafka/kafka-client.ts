@@ -243,7 +243,7 @@ export class MarketplaceKafkaClient {
             headers: message.headers ? this.parseHeaders(message.headers) : undefined
           };
 
-          console.log(`New registration ${message}:`)
+          //console.log(`New registration ${message}:`)
 
           await messageHandler(consumerMessage);
         } catch (error) {

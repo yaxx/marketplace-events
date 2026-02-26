@@ -15,16 +15,19 @@ export type RequestEventType = typeof REQUEST_EVENT_TYPES[keyof typeof REQUEST_E
 // Request Event Data Interfaces (aligned with Search service)
 export interface RequestCreatedData extends BaseEventData {
   requestId: string;
-  buyerId: string;
+  buyerId?: string;
+  buyer?: string;
   content: {
     text?: string;
     images?: string[];
   };
-  location: {
-    lat: number;
-    lng: number;
+  location?: {
+    coordinates: [number, number];
+    state?: string;
+    city?: string;
+    country?: string;
     address?: string;
-    radius: number; // in kilometers
+    radius?: number; // in kilometers
   };
   category?: string;
   status: 'active' | 'completed' | 'cancelled';

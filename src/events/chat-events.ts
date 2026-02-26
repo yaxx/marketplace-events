@@ -64,8 +64,10 @@ export interface MessageSentData extends BaseEventData {
     caption?: string;
     fileName?: string;
     location?: {
-      latitude: number;
-      longitude: number;
+      coordinates?: [number, number];
+      city?: string;
+      state?: string;
+      country?: string;
       address?: string;
     };
     contactName?: string;

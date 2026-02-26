@@ -54,7 +54,7 @@ export interface UserProfileUpdatedData extends BaseEventData {
     businessCategory?: string;
     location?: {
       type: 'Point';
-      coordinates: [number, number]; // [longitude, latitude]
+      coordinates?: [number, number]; // [longitude, latitude]
       address?: string;
       city?: string;
       state?: string;
@@ -101,8 +101,13 @@ export class UserRegisteredEvent extends BaseEvent<UserRegisteredData> {
   }
 }
 
-export class UserProfileUpdatedEvent extends BaseEvent<UserProfileUpdatedData> {
-  constructor(data: UserProfileUpdatedData, correlationId?: string) {
+// export class UserProfileUpdatedEvent extends BaseEvent<UserProfileUpdatedData> {
+//   constructor(data: UserProfileUpdatedData, correlationId?: string) {
+//     super(USER_EVENT_TYPES.USER_PROFILE_UPDATED, data, 'account-service', correlationId);
+//   }
+// }
+export class UserProfileUpdatedEvent extends BaseEvent<UserRegisteredData> {
+  constructor(data: UserRegisteredData, correlationId?: string) {
     super(USER_EVENT_TYPES.USER_PROFILE_UPDATED, data, 'account-service', correlationId);
   }
 }

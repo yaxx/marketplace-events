@@ -53,11 +53,12 @@ export interface IBuyerRequestServiceType {
     text?: string;
     images?: string[];
   };
-  location: {
-    lat: number;
-    lng: number;
+  location?: {
+    coordinates?: [number, number];
+    city?: string;
+    state?: string;
+    country?: string;
     address?: string;
-    radius: number;
   };
   category?: string;
   status: 'active' | 'completed' | 'cancelled';
@@ -114,8 +115,10 @@ export interface IMessageServiceType {
     caption?: string;
     fileName?: string;
     location?: {
-      latitude: number;
-      longitude: number;
+      coordinates?: [number, number];
+      city?: string;
+      country?: string;
+      state?: string;
       address?: string;
     };
     contactName?: string;
@@ -141,10 +144,10 @@ export class AccountServiceAdapter {
    */
   static toUserRegisteredEvent(user: IAccountServiceUser, deviceInfo?:DeviceInfo, deviceToken?:string): UserRegisteredData {
 
-    console.log('convertible',user )
+    // console.log('convertible', user )
    const userData:any ={
       info: {
-        _id: user._id,
+       _id: user._id,
        userId: user.userId,
        phone: user.phone,
        name: user.name,
@@ -239,7 +242,7 @@ export class SearchServiceAdapter {
       status: request.status,
       createdAt: request.createdAt.toISOString(),
       expiresAt: request.expiresAt.toISOString()
-    };
+    } as any;
   }
 
   /**
