@@ -234,24 +234,22 @@ class LocationUtils {
     static convertLocationFormats(location) {
         let lat;
         let lng;
-        if (location.coordinates) {
-            [lng, lat] = location.coordinates;
-        }
-        else if (location.lat !== undefined && location.lng !== undefined) {
-            lat = location.lat;
-            lng = location.lng;
-        }
-        else if (location.latitude !== undefined && location.longitude !== undefined) {
-            lat = location.latitude;
-            lng = location.longitude;
-        }
-        else {
-            throw new Error('Invalid location format');
-        }
+        [lng, lat] = location.coordinates || [location.longitude, location.latitude] || [location.lng, location.lat] || [0, 0];
+        // if (location.coordinates) {
+        //   [lng, lat] = location.coordinates;
+        // } else if (lat !== undefined && location.lng !== undefined) {
+        //   lat = location.lat;
+        //   lng = location.lng;
+        // } else if (location?.coordinates[1] !== undefined && location.longitude !== undefined) {
+        //   lat = location.latitude;
+        //   lng = location.longitude;
+        // } else {
+        //   throw new Error('Invalid location format');
+        // }
         return {
-            lat,
-            lng,
-            coordinates: [lng, lat]
+            lat: lat ?? location.latitude ?? location.coordinates?.[1] ?? 0,
+            lng: lng ?? location.longitude ?? location.coordinates?.[0] ?? 0,
+            coordinates: [lng ?? location.longitude ?? location.coordinates?.[0] ?? 0, lat ?? location.latitude ?? location.coordinates?.[1] ?? 0]
         };
     }
 }
