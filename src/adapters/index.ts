@@ -249,6 +249,7 @@ export class SearchServiceAdapter {
    * Convert Search service offer to OfferCreatedEvent data
    */
   static toOfferCreatedEvent(offer: any): OfferCreatedData {
+    console.log('Converting offer to event data:', JSON.stringify(offer, null, 2));
     return {
       offerId: offer.offerId,
       requestId: offer.requestId,
