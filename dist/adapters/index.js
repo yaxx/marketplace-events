@@ -106,6 +106,7 @@ class SearchServiceAdapter {
             offerId: offer.offerId,
             requestId: offer.requestId,
             sellerId: offer.sellerId,
+            buyerId: offer.request.buyer._id,
             price: offer.price,
             currency: offer.currency,
             description: offer.description,

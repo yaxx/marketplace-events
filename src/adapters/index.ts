@@ -248,11 +248,12 @@ export class SearchServiceAdapter {
   /**
    * Convert Search service offer to OfferCreatedEvent data
    */
-  static toOfferCreatedEvent(offer: IOfferServiceType): OfferCreatedData {
+  static toOfferCreatedEvent(offer: any): OfferCreatedData {
     return {
       offerId: offer.offerId,
       requestId: offer.requestId,
       sellerId: offer.sellerId,
+      buyerId: offer.request.buyer._id,
       price: offer.price,
       currency: offer.currency,
       description: offer.description,

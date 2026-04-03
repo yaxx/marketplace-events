@@ -144,7 +144,7 @@ export declare class SearchServiceAdapter {
     /**
      * Convert Search service offer to OfferCreatedEvent data
      */
-    static toOfferCreatedEvent(offer: IOfferServiceType): OfferCreatedData;
+    static toOfferCreatedEvent(offer: any): OfferCreatedData;
 }
 /**
  * Messaging Service Adapters
