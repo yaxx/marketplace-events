@@ -42,6 +42,17 @@ export interface UserRegisteredData extends BaseEventData {
   
 }
 
+export interface UserLoginData extends BaseEventData {
+  userId: string;
+  phone: string;
+  name: string;
+  avatar?: string;
+  userType: 'buyer' | 'seller';
+  deviceInfo?: DeviceInfo;
+  deviceToken?: string;
+  loginAt: string;
+}
+
 export interface UserProfileUpdatedData extends BaseEventData {
   userId: string;
   updatedFields: {
@@ -101,6 +112,12 @@ export class UserRegisteredEvent extends BaseEvent<UserRegisteredData> {
   }
 }
 
+export class UserLoginEvent extends BaseEvent<UserLoginData> {
+  constructor(data: UserLoginData, correlationId?: string) {
+    super(USER_EVENT_TYPES.USER_LOGIN, data, 'account-service', correlationId);
+  }
+}
+
 // export class UserProfileUpdatedEvent extends BaseEvent<UserProfileUpdatedData> {
 //   constructor(data: UserProfileUpdatedData, correlationId?: string) {
 //     super(USER_EVENT_TYPES.USER_PROFILE_UPDATED, data, 'account-service', correlationId);
@@ -124,16 +141,16 @@ export class UserDeletedEvent extends BaseEvent<UserDeletedData> {
   }
 }
 
-// Union type for all user events
-export type UserEvent = 
+export type UserEvent =
   | UserRegisteredEvent
+  | UserLoginEvent          
   | UserProfileUpdatedEvent
   | UserStatusChangedEvent
   | UserDeletedEvent;
 
-// Union type for all user event data
-export type UserEventData = 
+export type UserEventData =
   | UserRegisteredData
+  | UserLoginData           
   | UserProfileUpdatedData
   | UserStatusChangedData
   | UserDeletedData;

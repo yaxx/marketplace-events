@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserDeletedEvent = exports.UserStatusChangedEvent = exports.UserProfileUpdatedEvent = exports.UserRegisteredEvent = exports.USER_EVENT_TYPES = void 0;
+exports.UserDeletedEvent = exports.UserStatusChangedEvent = exports.UserProfileUpdatedEvent = exports.UserLoginEvent = exports.UserRegisteredEvent = exports.USER_EVENT_TYPES = void 0;
 const base_event_1 = require("../types/base-event");
 // User Event Types
 exports.USER_EVENT_TYPES = {
@@ -17,6 +17,12 @@ class UserRegisteredEvent extends base_event_1.BaseEvent {
     }
 }
 exports.UserRegisteredEvent = UserRegisteredEvent;
+class UserLoginEvent extends base_event_1.BaseEvent {
+    constructor(data, correlationId) {
+        super(exports.USER_EVENT_TYPES.USER_LOGIN, data, 'account-service', correlationId);
+    }
+}
+exports.UserLoginEvent = UserLoginEvent;
 // export class UserProfileUpdatedEvent extends BaseEvent<UserProfileUpdatedData> {
 //   constructor(data: UserProfileUpdatedData, correlationId?: string) {
 //     super(USER_EVENT_TYPES.USER_PROFILE_UPDATED, data, 'account-service', correlationId);

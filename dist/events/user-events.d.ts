@@ -35,6 +35,16 @@ export interface UserRegisteredData extends BaseEventData {
     deviceInfo?: DeviceInfo;
     deviceToken?: string;
 }
+export interface UserLoginData extends BaseEventData {
+    userId: string;
+    phone: string;
+    name: string;
+    avatar?: string;
+    userType: 'buyer' | 'seller';
+    deviceInfo?: DeviceInfo;
+    deviceToken?: string;
+    loginAt: string;
+}
 export interface UserProfileUpdatedData extends BaseEventData {
     userId: string;
     updatedFields: {
@@ -87,6 +97,9 @@ export interface UserDeletedData extends BaseEventData {
 export declare class UserRegisteredEvent extends BaseEvent<UserRegisteredData> {
     constructor(data: UserRegisteredData, correlationId?: string);
 }
+export declare class UserLoginEvent extends BaseEvent<UserLoginData> {
+    constructor(data: UserLoginData, correlationId?: string);
+}
 export declare class UserProfileUpdatedEvent extends BaseEvent<UserRegisteredData> {
     constructor(data: UserRegisteredData, correlationId?: string);
 }
@@ -96,5 +109,5 @@ export declare class UserStatusChangedEvent extends BaseEvent<UserStatusChangedD
 export declare class UserDeletedEvent extends BaseEvent<UserDeletedData> {
     constructor(data: UserDeletedData, correlationId?: string);
 }
-export type UserEvent = UserRegisteredEvent | UserProfileUpdatedEvent | UserStatusChangedEvent | UserDeletedEvent;
-export type UserEventData = UserRegisteredData | UserProfileUpdatedData | UserStatusChangedData | UserDeletedData;
+export type UserEvent = UserRegisteredEvent | UserLoginEvent | UserProfileUpdatedEvent | UserStatusChangedEvent | UserDeletedEvent;
+export type UserEventData = UserRegisteredData | UserLoginData | UserProfileUpdatedData | UserStatusChangedData | UserDeletedData;
